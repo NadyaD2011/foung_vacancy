@@ -1,7 +1,7 @@
 from terminaltables import DoubleTable
 
 
-def make_table(vacancies_dict):
+def make_table(name, vacancies_dict):
     table_data = [
         ['Язык программирования', 'Вакансий найдено', 'Вакансий обработано', 'Средняя зарплата'],
     ]
@@ -10,10 +10,6 @@ def make_table(vacancies_dict):
         for value in statistics.values():
             temp_data.append(value)
         table_data.append(temp_data)
-    return table_data
-
-
-def draw_table(name, vacancies_dict):
     table_instance = DoubleTable(make_table(vacancies_dict), name)
     print(table_instance.table)
     print()

@@ -6,11 +6,6 @@ def predict_salary(salary_from, salary_to):
   elif salary_to:
     return int(salary_to*0.8)
 
-def predict_rub_salary_sj(vacancy):
-  return predict_salary(vacancy['payment_from'], vacancy['payment_to'])
-
-def predict_rub_salary_hh(salary):
-  return predict_salary(salary['from'], salary['to'])
 
 def get_statistics(agregator, languages, agregators_secret_key: str=None):
     statistic_of_languages = {}
