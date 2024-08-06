@@ -16,6 +16,10 @@ def parse_hh_vacancies(languages):
       'per_page': param_settings['items_page'],
       'page': 0,
   }
+  language_section = {}
+  hh_pages = 1
+  all_vacancies = []
+  language_section = {
         'vacancies_found': 0,
         'vacancies_processed': 0,
         'average_salary': 0,
