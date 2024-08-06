@@ -5,7 +5,7 @@ def predict_salary(salary_from, salary_to):
     return int(salary_from*1.2)
   elif salary_to:
     return int(salary_to*0.8)
-
+ 
 
 def get_statistics(agregator, languages, agregators_secret_key: str=None):
     statistic_of_languages = {}
