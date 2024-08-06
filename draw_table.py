@@ -11,5 +11,4 @@ def make_table(name, vacancies_dict):
             temp_data.append(value)
         table_data.append(temp_data)
     table_instance = DoubleTable(make_table(vacancies_dict), name)
-    print(table_instance.table)
-    print()
+    return table_instance.table
