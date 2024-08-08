@@ -46,6 +46,6 @@ def parse_superjob_vacancies(languages, superjob_secret_key):
     try:      
       language_section['average_salary'] = int(language_section['average_salary'] / language_section['vacancies_processed'])
     except ZeroDivisionError:
-       print('Ошибка деления на ноль')
+      language_section['average_salary'] = 0
 
     return language_section
