@@ -19,11 +19,7 @@ def parse_hh_vacancies(languages):
   language_section = {}
   hh_pages = 1
   all_vacancies = []
-  language_section = {
-        'vacancies_found': 0,
-        'vacancies_processed': 0,
-        'average_salary': 0,
-  }
+  vacancies_processed = 0
 
   for language_key in languages:
     params_hh['text'] = f'программист {language_key}'
@@ -31,7 +27,6 @@ def parse_hh_vacancies(languages):
       response = requests.get(hh_url, params=params_hh)
       response.raise_for_status()
       hh_response = response.json()
-      language_section['vacancies_found'] = hh_response['found']
       all_vacancies += hh_response['items']
       hh_pages = hh_response['pages']
       params_hh['page'] += 1
@@ -39,11 +34,18 @@ def parse_hh_vacancies(languages):
     for vacancy in all_vacancies:
       job_salary = predict_rub_salary_for_hh(vacancy)
       if job_salary:
-        language_section['vacancies_processed'] += 1
-        language_section['average_salary'] += job_salary
+        vacancies_processed += 1
+        average_salary += job_salary
+
     try:
-      language_section['average_salary'] = int(language_section['average_salary'] / language_section['vacancies_processed'])
+      average_salary = int(language_section['average_salary'] / language_section['vacancies_processed'])
     except ZeroDivisionError:
-      language_section['average_salary'] = 0
+      average_salary = 0
+
+    language_section = {
+      "vacancies_found": hh_response['found'],
+      "vacancies_processed": vacancies_processed,
+      "average_salary": average_salary,
+    }
 
     return language_section
